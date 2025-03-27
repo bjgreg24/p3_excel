@@ -20,8 +20,16 @@ OUTPUT
 
 5: Creates a new output worksheet for each college class.
 - On the first row of the new worksheet, create data labels for each data category.
+- Create spots in the worksheet for:
+    - The highest grade
+    - The lowest grade
+    - The mean grade
+    - The median grade
+    - The number of students in the class
 
 6: Using the list of student objects, add data to new worksheet.
 - Use student object attributes (such as first and last name) and insert the data into each relevant column in the new worksheet.
+- Using the data in the new worksheet, calculate the highest, lowest, mean, and median grades, and the number of students in the class.
+- Add this data to the spots in the worksheet prepared in step 5.
 
 (Step 5 and 6 could be a separate file called output.py which defines a function that takes a list of student objects as a parameter that can be called in the main program file).

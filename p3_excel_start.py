@@ -9,6 +9,9 @@ import openpyxl
 from openpyxl import Workbook
 from openpyxl.styles import Font
 
+# imports student class from studentClass.py for use in main program file
+from studentClass import Student
+
 # to import existing workbook
 import pandas as pd
 

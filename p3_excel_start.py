@@ -1,7 +1,7 @@
 # P3 EXCEL
-# ALL OUR NAMES:
-# IS 303 
-# Section 004
+# Brinley Gregory, Ethan Carn, Luke Miller
+# Madi Diefenbach, Seth Mortenson, Sydney Trojahn Hedges
+# IS 303 Section 004
 # PROJECT DESCRIPTION: 
 
 # from instructions
@@ -12,25 +12,35 @@ from openpyxl.styles import Font
 # imports student class from studentClass.py for use in main program file
 from studentClass import Student
 
-# to import existing workbook
-import pandas as pd
+print("1: Poorly_Organized_Data_1.xlsx")
+print("2: Poorly_Organized_Data_2.xlsx")
+testChoice = int(input("Choose which data you'd like to format (1 or 2): "))
 
-df = pd.read_excel("Poorly_Organized_Data_1.xlsx")
+if testChoice == 1:
+    poorWorkbook = openpyxl.load_workbook("Poorly_Organized_Data_1.xlsx")
+elif testChoice == 2:
+    poorWorkbook = openpyxl.load_workbook("Poorly_Organized_Data_2.xlsx")
 
-# This is for the first example of poorly organized data
-firstWorkbook = Workbook() #workbook object
+sheet = poorWorkbook.active
 
-currSheet = firstWorkbook.active #object for the object Workbook
+#########
+# TO-DO #
+#########
 
-firstWorkbook.remove(firstWorkbook["Sheet"])
+# Feel free to place your code here in the main file if you prefer that
+# instead of making a function in a separate file.
 
-classNames = [] # list for class names
+# If you decide to define the function in a separate file, remember to import the function!
+# You should also import the student class into your separate files!
 
-for iCount in df.iloc[:,0]:
-    if iCount not in classNames :
-        classNames.append(iCount)
 
-for items in classNames:
-    firstWorkbook.create_sheet(classNames[items])
+# THIS FUNCTION SHOULD RETURN A LIST OF STUDENT OBJECTS FROM THE SELECTED EXCEL SHEET
+studentList = getStudentObjects(sheet)
 
-print(classNames)
+# THIS FUNCTION SHOULD CREATE CLASS EXCEL FILES BASED ON ALL COLLEGE CLASSES (Algebra.xlsx, History.xlsx, etc.)
+# SHOULD USE CLASS ATTRIBUTE IN STUDENT OBJECTS CONTAINED IN THE LIST
+createWorksheets(studentList)
+
+# THIS FUNCTION SHOULD ADD ALL THE STUDENT DATA TO THE CORRECT CLASS WORKSHEETS
+# THESE WORKSHEETS SHOULD HAVE BEEN CREATED FROM THE PREVIOUS FUNCTION
+addStudentData(studentList)

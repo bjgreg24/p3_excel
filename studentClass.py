@@ -25,16 +25,16 @@ class Student:
 
 
 # THIS CODE IS ONLY TO TEST THE CLASS AND OBJECTS.
-# RUN THIS FILE TO SEE HOW THE DATA IS STORED IN STUDENT OBJECTS.
 # It will not be used in the final program!!
-student_data = str(input("Enter student data string: "))
-className = str(input("Enter class name: "))
-grade = int(input("Enter grade: "))
 
-oStudent = Student(className, student_data, grade)
+#student_data = str(input("Enter student data string: "))
+#className = str(input("Enter class name: "))
+#grade = int(input("Enter grade: "))
 
-print(oStudent.fname)
-print(oStudent.lname)
-print(oStudent.student_id)
-print(oStudent.class_name)
-print(oStudent.grade)
+#oStudent = Student(className, student_data, grade)
+
+#print(oStudent.fname)
+#print(oStudent.lname)
+#print(oStudent.student_id)
+#print(oStudent.class_name)
+#print(oStudent.grade)

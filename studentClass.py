@@ -1,3 +1,6 @@
+# Luke Miller
+# IS303 Section 004
+# Creates a student class to be used in program files.
 
 # Creates student class.
 class Student:
@@ -23,14 +26,15 @@ class Student:
 
 # THIS CODE IS ONLY TO TEST THE CLASS AND OBJECTS.
 # It will not be used in the final program!!
-student_data = str(input("Enter student data string: "))
-className = str(input("Enter class name: "))
-grade = int(input("Enter grade: "))
 
-oStudent = Student(className, student_data, grade)
+#student_data = str(input("Enter student data string: "))
+#className = str(input("Enter class name: "))
+#grade = int(input("Enter grade: "))
 
-print(oStudent.fname)
-print(oStudent.lname)
-print(oStudent.student_id)
-print(oStudent.class_name)
-print(oStudent.grade)
+#oStudent = Student(className, student_data, grade)
+
+#print(oStudent.fname)
+#print(oStudent.lname)
+#print(oStudent.student_id)
+#print(oStudent.class_name)
+#print(oStudent.grade)

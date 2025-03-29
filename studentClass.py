@@ -12,6 +12,7 @@ class Student:
         self.unpackStudent(student_data)
         self.grade = grade
 
+
     # This method takes the string passed through student_data and splits it into each relevant attribute.
     # for instance, it will take "Miller" from "Miller_Luke_A512093" and add it to the last name attribute.
     def unpackStudent(self, student_data):
@@ -23,14 +24,14 @@ class Student:
 
 # THIS CODE IS ONLY TO TEST THE CLASS AND OBJECTS.
 # It will not be used in the final program!!
-student_data = str(input("Enter student data string: "))
-className = str(input("Enter class name: "))
-grade = int(input("Enter grade: "))
+# student_data = str(input("Enter student data string: "))
+# className = str(input("Enter class name: "))
+# grade = int(input("Enter grade: "))
 
-oStudent = Student(className, student_data, grade)
+# oStudent = Student(className, student_data, grade)
 
-print(oStudent.fname)
-print(oStudent.lname)
-print(oStudent.student_id)
-print(oStudent.class_name)
-print(oStudent.grade)
+# print(oStudent.fname)
+# print(oStudent.lname)
+# print(oStudent.student_id)
+# print(oStudent.class_name)
+# print(oStudent.grade)

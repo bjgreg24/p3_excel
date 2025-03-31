@@ -81,6 +81,7 @@ def createWorksheets (studentList) :
 createWorksheets(studentList)
 
 # THIS FUNCTION SHOULD ADD ALL THE STUDENT DATA TO THE NEW FILE AND CORRECT CLASS SHEETS
+#addStudentData(studentList)
 addStudentData(studentList)
 
 
@@ -96,3 +97,34 @@ def addFilter (OrganizedWorkbook) :
 
 
 
+# add filter function
+def addFilter (OrganizedWorkbook) :
+# load workbook
+    wb = openpyxl.load_workbook(OrganizedWorkbook)
+# for each worksheet in the workbook
+    for worksheet in wb.worksheets :
+        # make the current worksheet
+        currWorksheet = wb[worksheet] 
+        # find the max row
+        max_row = currWorksheet.max_row
+        # autofilter the worksheet
+        currWorksheet.auto_filter.ref = f"A1:D{max_row}"
+
+
+
+
+#Format colmns 
+def format_columns(): 
+    wb = openpyxl.load_workbook("Organized_Data.xlsx")
+    cols = ['A', 'B', 'C', 'D', 'F', 'G']
+    bold_font = Font(bold=True)
+    for sheet in wb.worksheets:
+        for col_letter in cols:
+            cell = sheet[f'{col_letter}1']
+
+            cell.font = bold_font
+
+            header_text = str(cell.value) if cell.value else ""
+            new_width = len(header_text) + 5
+            sheet.column_dimensions[col_letter].width = new_width
+            wb.save ("Organized_Data.xlsx")

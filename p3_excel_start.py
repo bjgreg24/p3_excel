@@ -81,5 +81,20 @@ def createWorksheets (studentList) :
 createWorksheets(studentList)
 
 # THIS FUNCTION SHOULD ADD ALL THE STUDENT DATA TO THE NEW FILE AND CORRECT CLASS SHEETS
-addStudentData(studentList)
+#addStudentData(studentList)
 
+#Format colmns 
+def format_columns(): 
+    wb = openpyxl.load_workbook("Organized_Data.xlsx")
+    cols = ['A', 'B', 'C', 'D', 'F', 'G']
+    bold_font = Font(bold=True)
+    for sheet in wb.worksheets:
+        for col_letter in cols:
+            cell = sheet[f'{col_letter}1']
+
+            cell.font = bold_font
+
+            header_text = str(cell.value) if cell.value else ""
+            new_width = len(header_text) + 5
+            sheet.column_dimensions[col_letter].width = new_width
+            wb.save ("Organized_Data.xlsx")

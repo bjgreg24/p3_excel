@@ -1,3 +1,5 @@
+# SEEING IF THIS WORKS
+
 # P3 EXCEL
 # Brinley Gregory, Ethan Carn, Luke Miller
 # Madi Diefenbach, Seth Mortensen, Sydney Trojahn Hedges
@@ -83,7 +85,6 @@ createWorksheets(studentList)
 # THIS FUNCTION SHOULD ADD ALL THE STUDENT DATA TO THE NEW FILE AND CORRECT CLASS SHEETS
 #addStudentData(studentList)
 addStudentData(studentList)
-
 
 def addFilter (OrganizedWorkbook) :
 

@@ -83,3 +83,16 @@ createWorksheets(studentList)
 # THIS FUNCTION SHOULD ADD ALL THE STUDENT DATA TO THE NEW FILE AND CORRECT CLASS SHEETS
 addStudentData(studentList)
 
+
+def addFilter (OrganizedWorkbook) :
+
+    wb = openpyxl.load_workbook(OrganizedWorkbook)
+
+    for worksheet in wb.worksheets :
+        currWorksheet = wb[worksheet] 
+        max_row = currWorksheet.max_row
+        currWorksheet.auto_filter.ref = f"A1:D{max_row}"
+
+
+
+

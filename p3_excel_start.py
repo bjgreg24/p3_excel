@@ -141,18 +141,20 @@ def addFilter (OrganizedWorkbook) :
 # for each worksheet in the workbook
     for worksheet in wb.worksheets :
         # make the current worksheet
-        currWorksheet = wb[worksheet] 
+        currWorksheet = worksheet
         # find the max row
         max_row = currWorksheet.max_row
         # autofilter the worksheet
         currWorksheet.auto_filter.ref = f"A1:D{max_row}"
+        wb.save("Organized_Data.xlsx")
+        wb.close()
 
-
+addFilter(organizedWorkbook)
 
 
 #Format colmns 
-def format_columns(): 
-    wb = openpyxl.load_workbook("Organized_Data.xlsx")
+def format_columns(organizedWorkbook): 
+    wb = openpyxl.load_workbook(organizedWorkbook)
     cols = ['A', 'B', 'C', 'D', 'F', 'G']
     bold_font = Font(bold=True)
     for sheet in wb.worksheets:
@@ -165,3 +167,5 @@ def format_columns():
             new_width = len(header_text) + 5
             sheet.column_dimensions[col_letter].width = new_width
             wb.save ("Organized_Data.xlsx")
+
+format_columns(organizedWorkbook)

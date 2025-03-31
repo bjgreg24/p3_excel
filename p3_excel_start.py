@@ -26,16 +26,6 @@ elif testChoice == 2:
 sheet = poorWorkbook.active
 
 
-#########
-# TO-DO #
-#########
-
-# Feel free to place your code here in the main file if you prefer that
-# instead of making a function in a separate file.
-
-# If you decide to define the function in a separate file, remember to import the function!
-# You should also import the student class into your separate files!
-
 # step 2 in to-do Use a for loop to get every row of data in the poorly formatted excel worksheet.
 def getStudentObjects (sheet) :
     iRow = 2 
@@ -59,9 +49,6 @@ def getStudentObjects (sheet) :
 # THIS FUNCTION SHOULD RETURN A LIST OF STUDENT OBJECTS FROM THE SELECTED EXCEL SHEET
 studentList = getStudentObjects(sheet)
 
-# THIS FUNCTION SHOULD CREATE A NEW EXCEL FILE, WITH SHEETS FOR EVERY CLASS (Algebra.xlsx, History.xlsx, etc.)
-# SHOULD USE CLASS ATTRIBUTE IN STUDENT OBJECTS CONTAINED IN THE LIST
-
 # create function that creates the worksheets and names them based on the subject
 def createWorksheets (studentList) :
     # create an workbook to store organized data
@@ -82,7 +69,6 @@ def createWorksheets (studentList) :
     
 createWorksheets(studentList)
 
-# THIS FUNCTION SHOULD ADD ALL THE STUDENT DATA TO THE NEW FILE AND CORRECT CLASS SHEETS
 # THIS FUNCTION SHOULD ADD ALL THE STUDENT DATA TO THE NEW FILE AND CORRECT CLASS SHEETS
 def addStudentData(studentList, organizedWorkbook):
     # open workbook
@@ -131,9 +117,6 @@ def addFilter (OrganizedWorkbook) :
         max_row = currWorksheet.max_row
         currWorksheet.auto_filter.ref = f"A1:D{max_row}"
 
-
-
-
 # add filter function
 def addFilter (OrganizedWorkbook) :
 # load workbook
@@ -150,7 +133,6 @@ def addFilter (OrganizedWorkbook) :
         wb.close()
 
 addFilter(organizedWorkbook)
-
 
 #Format colmns 
 def format_columns(organizedWorkbook): 

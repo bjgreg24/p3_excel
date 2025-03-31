@@ -81,5 +81,41 @@ def createWorksheets (studentList) :
 createWorksheets(studentList)
 
 # THIS FUNCTION SHOULD ADD ALL THE STUDENT DATA TO THE NEW FILE AND CORRECT CLASS SHEETS
-addStudentData(studentList)
+def addStudentData(studentList, organizedWorkbook):
+    # open workbook
+    wb = openpyxl.load_workbook(organizedWorkbook)
 
+    # create headers
+    headers = ["Last Name", "First Name", "Student ID", "Grade"]
+
+    # loop through every sheet in the workbook
+    for sheet_name in wb.sheetnames:
+        # activate worksheet
+        worksheet = wb[sheet_name]
+        wb.active = worksheet  
+
+        # put headers on every sheet
+        for col, header in enumerate(headers, start=1):
+            worksheet.cell(row=1, column=col, value=header)
+        
+        # loop through every student object and see if they are in that class
+        # if student is in the class, input their data into the sheet
+        for student in range(len(studentList)):
+            if wb.active.title == studentList[student].class_name:
+                iRow = wb.active.max_row + 1  # Get the first empty row
+                iCol = "A"
+                wb.active[iCol + str(iRow)].value = studentList[student].lname
+                iCol = "B"
+                wb.active[iCol + str(iRow)].value = studentList[student].fname
+                iCol = "C"
+                wb.active[iCol + str(iRow)].value =studentList[student].student_id
+                iCol = "D"
+                wb.active[iCol + str(iRow)].value = studentList[student].grade
+
+    # saves the workbook 
+    wb.save(organizedWorkbook)
+    wb.close()
+
+
+organizedWorkbook = "Organized_Data.xlsx"
+addStudentData(studentList,organizedWorkbook)

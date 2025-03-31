@@ -1,10 +1,9 @@
-# SEEING IF THIS WORKS
-
 # P3 EXCEL
 # Brinley Gregory, Ethan Carn, Luke Miller
 # Madi Diefenbach, Seth Mortensen, Sydney Trojahn Hedges
 # IS 303 Section 004
 # PROJECT DESCRIPTION: 
+# Takes poorly organized data from a excel workbook and organizes the data into a new workbook. 
 
 # from instructions
 import openpyxl 

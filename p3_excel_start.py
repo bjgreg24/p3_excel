@@ -1,10 +1,9 @@
-# SEEING IF THIS WORKS
-
 # P3 EXCEL
 # Brinley Gregory, Ethan Carn, Luke Miller
 # Madi Diefenbach, Seth Mortensen, Sydney Trojahn Hedges
 # IS 303 Section 004
 # PROJECT DESCRIPTION: 
+# Takes poorly organized data from a excel workbook and organizes the data into a new workbook. 
 
 # from instructions
 import openpyxl 
@@ -133,6 +132,30 @@ def addFilter (OrganizedWorkbook) :
         wb.close()
 
 addFilter(organizedWorkbook)
+
+# Ethan Carn Q4- Additionally, each sheet should have some simple summary information about each class using functions in columns F (the titles) and G (the data). 
+# It should show: o	The highest grade The lowest grade The mean grade The median grade The number of students in the class
+ # Summary Titles
+def addSummaries (OrganizedWorkbook) : 
+# load workbook
+    wb = openpyxl.load_workbook(OrganizedWorkbook)
+# for each worksheet in the workbook
+    for worksheet in wb.worksheets :
+    dSummaries = {
+        "Highest Grade": f"=MAX(D2:D{iMaxRow})",
+        "Lowest Grade": f"=MIN(D2:D{iMaxRow})",
+        "Mean Grade": f"=AVERAGE(D2:D{iMaxRow})",
+        "Median Grade": f"=MEDIAN(D2:D{iMaxRow})",
+        "Number of Students": f"=COUNTA(D2:D{iMaxRow})"
+    }
+    
+    iSummaryRow = 2
+    for sTitle, sFormula in dSummaries.items():
+        oSheet[f"F{iSummaryRow}"] = sTitle
+        oSheet[f"G{iSummaryRow}"] = sFormula
+        oSheet[f"F{iSummaryRow}"].font = Font(bold=True)
+        iSummaryRow += 1
+# End of Q4 
 
 #Format colmns 
 def format_columns(organizedWorkbook): 

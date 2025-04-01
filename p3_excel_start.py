@@ -179,3 +179,8 @@ def format_columns(organizedWorkbook):
 
 # calls formt columns function
 format_columns(organizedWorkbook)
+
+# saves and closes the workbook 
+wb = openpyxl.load_workbook(organizedWorkbook)
+wb.save(organizedWorkbook)
+wb.close()

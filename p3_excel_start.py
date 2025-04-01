@@ -156,6 +156,7 @@ def addSummaries (OrganizedWorkbook) :
         oSheet[f"G{iSummaryRow}"] = sFormula
         oSheet[f"F{iSummaryRow}"].font = Font(bold=True)
         iSummaryRow += 1
+addSummaries(OrganizedWorkbook)
 # End of Q4 
 
 #Format colmns 

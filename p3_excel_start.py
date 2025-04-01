@@ -13,6 +13,7 @@ from openpyxl.styles import Font
 # imports student class from studentClass.py for use in main program file
 from studentClass import Student
 
+# gives user a choice of which file to use
 print("1: Poorly_Organized_Data_1.xlsx")
 print("2: Poorly_Organized_Data_2.xlsx")
 testChoice = int(input("Choose which data you'd like to format (1 or 2): "))
@@ -65,7 +66,8 @@ def createWorksheets (studentList) :
     # saves the workbook 
     organizedWorkbook.save(filename="Organized_Data.xlsx")
     organizedWorkbook.close ()
-    
+
+#call createworksheets function
 createWorksheets(studentList)
 
 # THIS FUNCTION SHOULD ADD ALL THE STUDENT DATA TO THE NEW FILE AND CORRECT CLASS SHEETS
@@ -104,17 +106,9 @@ def addStudentData(studentList, organizedWorkbook):
     wb.save(organizedWorkbook)
     wb.close()
 
+# calles addstudentdata function
 organizedWorkbook = "Organized_Data.xlsx"
 addStudentData(studentList,organizedWorkbook)
-
-def addFilter (OrganizedWorkbook) :
-
-    wb = openpyxl.load_workbook(OrganizedWorkbook)
-
-    for worksheet in wb.worksheets :
-        currWorksheet = wb[worksheet] 
-        max_row = currWorksheet.max_row
-        currWorksheet.auto_filter.ref = f"A1:D{max_row}"
 
 # add filter function
 def addFilter (OrganizedWorkbook) :
@@ -131,35 +125,43 @@ def addFilter (OrganizedWorkbook) :
         wb.save("Organized_Data.xlsx")
         wb.close()
 
+#call addFilter function
 addFilter(organizedWorkbook)
 
-# Ethan Carn Q4- Additionally, each sheet should have some simple summary information about each class using functions in columns F (the titles) and G (the data). 
-# It should show: o	The highest grade The lowest grade The mean grade The median grade The number of students in the class
-#Summary Titles
-def addSummaries (OrganizedWorkbook) : 
-# load workbook
-    wb = openpyxl.load_workbook(OrganizedWorkbook)
-# for each worksheet in the workbook
+# function that finds min, max, etc. data of each class and prints it in F and G
+def addSummaries(organizedWorkbook):
+    # create list with headers
+    headers = ['Summary Statistics', 'Highest Grade', 'Lowest Grade', 'Mean Grade', 'Median Grade', 'Number of Students']
 
-    for worksheet in wb.worksheets :
-        dSummaries = {
-            "Highest Grade": f"=MAX(D2:D{iMaxRow})",
-            "Lowest Grade": f"=MIN(D2:D{iMaxRow})",
-            "Mean Grade": f"=AVERAGE(D2:D{iMaxRow})",
-            "Median Grade": f"=MEDIAN(D2:D{iMaxRow})",
-            "Number of Students": f"=COUNTA(D2:D{iMaxRow})"
-        }
+    # open workbook
+    wb = openpyxl.load_workbook(organizedWorkbook)
 
-    iSummaryRow = 2
-    for sTitle, sFormula in dSummaries.items():
-        oSheet[f"F{iSummaryRow}"] = sTitle
-        oSheet[f"G{iSummaryRow}"] = sFormula
-        oSheet[f"F{iSummaryRow}"].font = Font(bold=True)
-        iSummaryRow += 1
-addSummaries(OrganizedWorkbook)
-# End of Q4 
+    # loop through every sheet in the workbook
+    for sheet_name in wb.sheetnames:
+        # activate worksheet
+        worksheet = wb[sheet_name]
+        wb.active = worksheet  
 
-#Format colmns 
+        # put headers on every sheet in column F
+        for row, header in enumerate(headers, start=1):
+            worksheet.cell(row=row, column=6, value=header)
+        
+        # calculate data and add it to column G
+        iMaxRow = worksheet.max_row
+        worksheet["G1"] = "Value"
+        worksheet["G2"] = f"=MAX(D2:D{iMaxRow})"
+        worksheet["G3"] = f"=MIN(D2:D{iMaxRow})"
+        worksheet["G4"] = f"=AVERAGE(D2:D{iMaxRow})"
+        worksheet["G5"] = f"=MEDIAN(D2:D{iMaxRow})"
+        worksheet["G6"] = f"=COUNTA(D2:D{iMaxRow})"
+    
+    #save workbook
+    wb.save(organizedWorkbook)
+
+# call summaries function
+addSummaries(organizedWorkbook)
+
+#Format columns 
 def format_columns(organizedWorkbook): 
     wb = openpyxl.load_workbook(organizedWorkbook)
     cols = ['A', 'B', 'C', 'D', 'F', 'G']
@@ -175,4 +177,5 @@ def format_columns(organizedWorkbook):
             sheet.column_dimensions[col_letter].width = new_width
             wb.save ("Organized_Data.xlsx")
 
+# calls formt columns function
 format_columns(organizedWorkbook)
